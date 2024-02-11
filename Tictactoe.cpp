@@ -61,7 +61,7 @@ void PlayersInput(string& P1, string& P1name, string& P2, string& P2name){
     cout << P2name << ", you are: " << P2 << endl;
 }
 
-void assign_Position(int P1position, int P2position, string& P1name, string& P2name){
+void assign_Position(int& P1position, int& P2position, string& P1name, string& P2name){
     do{
         cout<< P1name << ", enter your position (1-9): ";
         cin >> P1position;
@@ -76,10 +76,12 @@ void assign_Position(int P1position, int P2position, string& P1name, string& P2n
         cout<< P2name << ", enter your position (1-9): ";
         cin >> P2position;
         //Conditional Statement for invalid input for position
-        if (P2position < 1 || P2position > 9){
-            cout << "Invalid position input for " << P2position << "try again (1-9): ";
-            //cin >> P2position;
-            continue;
+        while(P2position <= 1 || P2position >= 9){
+            if(P2position < 1 || P2position > 9){
+                cout << "Invalid position input for " << P2name << " try again (1-9): ";
+            }
+            cin >> P2position;
+            //continue;
         }
         while(P1position == P2position){
             cout << P1name << " and " << P2name << " cannot play into the same position!" << endl;
