@@ -29,10 +29,14 @@ void PlayersInput(string& P1, string& P1name, string& P2, string& P2name){
         // Player1 inputs
         cout<< "Player 1, enter your name and character choice, seperated by space: ";
         cin >> P1name >> P1;
+        
         // Convert the character choice to uppercase
-        for (char& c : P1) {
-            c = toupper(c);
+        for(size_t i = 0; i < P1.length(); i++){
+            P1[i] = toupper(P1[i]);
         }
+        // for (char& c : P1) {
+        //     c = toupper(c);
+        // }
         /*Check for invalid character input*/
         if(P1 == "X"){
             P2 = "O";
