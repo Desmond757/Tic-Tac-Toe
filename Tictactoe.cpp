@@ -2,7 +2,7 @@
 #include <pthread.h>
 using namespace std;
 const int board_size = 3;
-string  Board[board_size][board_size];
+string Board[board_size][board_size];
 void Build_Board(){
     for(int row = 0; row < board_size; row++){
         for (int col = 0; col < board_size; col++){
@@ -94,6 +94,70 @@ void assign_Position(int& P1position, int& P2position, string& P1name, string& P
         break;
     }while(true);
 }
+void game(int& P1position, int& P2position, string& P1name, string& P2name, string& P1, string& P2){
+
+    if(P1position == 1){
+        Board[0][0] = P1;
+    }
+    if(P1position== 2){
+        Board[0][1] = "X";
+    }
+    if(P1position == 3){
+        Board[0][2] = "X";
+    }
+    if (P1position == 4){
+        Board[1][0] = "X";
+    }
+    if (P1position == 5){
+        Board[1][1] = "X";
+    }
+    if (P1position == 6){
+        Board[1][2] = "X";
+    }
+    if (P1position == 7){
+        Board[2][0] = "X";
+    }
+    if (P1position == 8){
+        Board[2][1] = "X";
+    }
+    if (P1position == 9){
+        Board[2][2] = "X";
+    }
+    if (P1position < 1 || P1position > 9){
+        cout << "Invalid Position Input."<< endl;
+    }
+
+    //Conditional statement position for Player1
+    if(P2position == 1){
+        Board[0][0] = P2;
+    }
+    if(P2position== 2){
+        Board[0][1] = P2;
+    }
+    if(P2position == 3){
+        Board[0][2] = P2;
+    }
+    if(P2position == 4){
+        Board[1][0] = P2;
+    }
+    if (P2position == 5){
+        Board[1][1] = P2;
+    }
+    if (P2position == 6){
+        Board[1][2] = P2;
+    }
+    if (P2position == 7){
+        Board[2][0] = P2;
+    }
+    if (P2position == 8){
+        Board[2][1] = P2;
+    }
+    if (P2position == 9){
+        Board[2][2] = P2;
+    }
+}
+
+
 int main(){
     /* declarations:::::::::*/
     int P1position, P2position;
@@ -104,8 +168,31 @@ int main(){
     display_Board();
     PlayersInput(P1, P1name, P2, P2name);
     assign_Position(P1position, P2position, P1name, P2name);
+    game(P1position, P2position, P1name, P2name, P1, P2);
+    display_Board();
     cout << "P1 possition= " <<P1position << endl;
     cout << "P2 position = " <<P2position << endl;
+
+    // Game loop
+    int moves = 0;
+    while (moves < 9) { // Maximum of 9 moves in a Tic-Tac-Toe game
+
+        // Alternate between player 1 and player 2
+        if (moves % 2 == 0) {
+            cout << P1name << "'s turn:" << endl;
+            assign_Position(P1position, P2position, P1name, P2name);
+            game(P1position, P2position, P1name, P2name, P1, P2);
+        } else {
+            cout << P2name << "'s turn:" << endl;
+            assign_Position(P1position, P2position, P1name, P2name);
+            game(P1position, P2position, P1name, P2name, P1, P2);
+        }
+
+        display_Board(); // Display the updated board after each move
+
+        moves++; // Increment the move count
+    }
+    cout << "The game is a draw!" << endl;
 
 return 0;
 }
