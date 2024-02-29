@@ -100,28 +100,28 @@ void game(int& P1position, int& P2position, string& P1name, string& P2name, stri
         Board[0][0] = P1;
     }
     if(P1position== 2){
-        Board[0][1] = "X";
+        Board[0][1] = P1;
     }
     if(P1position == 3){
-        Board[0][2] = "X";
+        Board[0][2] = P1;
     }
     if (P1position == 4){
-        Board[1][0] = "X";
+        Board[1][0] = P1;
     }
     if (P1position == 5){
-        Board[1][1] = "X";
+        Board[1][1] = P1;
     }
     if (P1position == 6){
-        Board[1][2] = "X";
+        Board[1][2] = P1;
     }
     if (P1position == 7){
-        Board[2][0] = "X";
+        Board[2][0] = P1;
     }
     if (P1position == 8){
-        Board[2][1] = "X";
+        Board[2][1] = P1;
     }
     if (P1position == 9){
-        Board[2][2] = "X";
+        Board[2][2] = P1;
     }
     if (P1position < 1 || P1position > 9){
         cout << "Invalid Position Input."<< endl;
@@ -156,8 +156,36 @@ void game(int& P1position, int& P2position, string& P1name, string& P2name, stri
         Board[2][2] = P2;
     }
 }
+void checkWin(int& P1position, int& P2position, string& P1, string& P2){
+    //Check win for player 1
+    if (Board[0][0] == P1 && Board[0][1] == P1 && Board[0][2] == P1){
+        cout << P1 << "Wins!!!!" <<endl;
+    }
+    else if(Board[1][0] == P1 && Board[1][1] == P1 && Board[1][2] == P1){
+        cout << P1 << "Wins!!!!" <<endl;
+    }
+    else if(Board[2][0] == P1 && Board[2][1] == P1 && Board[2][2] == P1){
+        cout << P1 << "Wins!!!!" <<endl;
+    }
+    else{
+        cout << "The game is a draw! Give it another try :))" << endl;
+    }
 
-
+    //Check win for Player 2
+    if(Board[0][0] == P2 && Board[0][1] == P2 && Board[0][2] == P2){
+        cout << P1 << "Wins!!!!" <<endl;
+    }
+    else if(Board[1][0] == P2 && Board[1][1] == P2 && Board[1][2] == P2){
+        cout << P1 << "Wins!!!!" <<endl;
+    }
+    else if(Board[2][0] == P2 && Board[2][1] == P2 && Board[2][2] == P2){
+        cout << P1 << "Wins!!!!" <<endl;
+    }
+    else{
+        cout << "The game is a draw! Give it another try :))" << endl;
+    }
+    
+}
 int main(){
     /* declarations:::::::::*/
     int P1position, P2position;
@@ -170,6 +198,7 @@ int main(){
     assign_Position(P1position, P2position, P1name, P2name);
     game(P1position, P2position, P1name, P2name, P1, P2);
     display_Board();
+    checkWin(P1position, P2position, P1, P2);
     cout << "P1 possition= " <<P1position << endl;
     cout << "P2 position = " <<P2position << endl;
 
@@ -179,18 +208,18 @@ int main(){
 
         // Alternate between player 1 and player 2
         if (moves % 2 == 0) {
-            cout << P1name << "'s turn:" << endl;
+            // cout << P1name << "'s turn:" << endl;
             assign_Position(P1position, P2position, P1name, P2name);
             game(P1position, P2position, P1name, P2name, P1, P2);
         } else {
-            cout << P2name << "'s turn:" << endl;
+            // cout << P2name << "'s turn:" << endl;
             assign_Position(P1position, P2position, P1name, P2name);
             game(P1position, P2position, P1name, P2name, P1, P2);
         }
 
         display_Board(); // Display the updated board after each move
 
-        moves++; // Increment the move count
+        //moves++; // Increment the move count
     }
     cout << "The game is a draw!" << endl;
 
